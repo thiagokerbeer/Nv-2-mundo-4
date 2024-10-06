@@ -1,0 +1,113 @@
+import 'package:flutter/material.dart';
+
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Explore Mundo',
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Explore Mundo - Viagens'),
+        ),
+        body: ListView(
+          children: [
+            Image.asset(
+              'images/destino.jpg', // Substitua pela sua imagem
+              width: 600,
+              height: 240,
+              fit: BoxFit.cover,
+            ),
+            titleSection,
+            buttonSection,
+            textSection,
+            // Outros elementos do corpo do aplicativo podem ser adicionados aqui.
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// Passo 5: Construindo a Coluna da Seção Título
+Widget titleSection = Container(
+  padding: const EdgeInsets.all(32),
+  child: Row(
+    children: [
+      Expanded(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: const Text(
+                'Destinos Incríveis',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Text(
+              'Explore o mundo com as melhores opções de viagem!',
+              style: TextStyle(
+                color: Colors.grey[500],
+              ),
+            ),
+          ],
+        ),
+      ),
+      Icon(
+        Icons.star,
+        color: Colors.red[500],
+      ),
+      const Text('4.8'),
+    ],
+  ),
+);
+
+// Passo 6: Construindo a Seção de Botões
+Column _buildButtonColumn(Color color, IconData icon, String label) {
+  return Column(
+    mainAxisSize: MainAxisSize.min,
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Icon(icon, color: color),
+      Container(
+        margin: const EdgeInsets.only(top: 8),
+        child: Text(
+          label,
+          style: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w400,
+            color: color,
+          ),
+        ),
+      ),
+    ],
+  );
+}
+
+Color color = Colors.blue;
+
+Widget buttonSection = Row(
+  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  children: [
+    _buildButtonColumn(color, Icons.call, 'LIGAR'),
+    _buildButtonColumn(color, Icons.near_me, 'ROTA'),
+    _buildButtonColumn(color, Icons.share, 'COMPARTILHAR'),
+  ],
+);
+
+// Passo 7: Definindo a Seção de Texto
+Widget textSection = Container(
+  padding: const EdgeInsets.all(32),
+  child: const Text(
+    'A Explore Mundo oferece pacotes exclusivos para os destinos mais incríveis do mundo. '
+    'Viaje com conforto e segurança, aproveitando as melhores opções de hospedagem, '
+    'passeios e serviços personalizados.',
+    softWrap: true,
+  ),
+);
